@@ -1,10 +1,10 @@
 class User < ApplicationRecord
-  before_save { email.downcase! }
+  before_save { self.email.downcase! }
   # relationship
   has_many :microposts
 
   # validation
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
   validates :name,
             presence: true,
@@ -14,4 +14,10 @@ class User < ApplicationRecord
             presence: true,
             format: { with: VALID_EMAIL_REGEX },
             uniqueness: { case_sensitive: false }
+
+  # hashing password
+  has_secure_password
+  validates :password,
+            presence: true,
+            length: { minimum: 12 }
 end
