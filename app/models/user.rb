@@ -1,8 +1,8 @@
 class User < ApplicationRecord
-  before_save { self.email.downcase! }
   # relationship
-  has_many :microposts
+  has_many :microposts, dependent: :destroy
 
+  before_save { self.email.downcase! }
   # validation
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 

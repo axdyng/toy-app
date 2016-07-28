@@ -2,9 +2,6 @@
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
-</p>
-
-<p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
@@ -13,6 +10,18 @@
   <strong>Logged in at:</strong>
   <%= Time.now %>
 </em>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <% if @user.microposts.any? %>
+      <h3>Total posts: (<%= @user.microposts.count %>)</h3>
+      <ol class="microposts">
+        <%= render @microposts %>
+      </ol>
+      <%#= will_paginate @microposts %>
+    <% end %>
+  </div>
+</div>
 
 <%#= link_to 'Edit', edit_user_path(@user) %> |
 <%#= link_to 'Back', users_path %>

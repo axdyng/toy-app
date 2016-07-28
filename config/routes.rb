@@ -16,8 +16,8 @@ Rails.application.routes.draw do
   delete  '/logout',  to: 'sessions#destroy'
 
   #restful routes (CRUD)
-  resources :users, except:[ :new ]
-  resources :microposts
+  resources :users,         except:[ :new ]
+  resources :microposts,    only: [:create, :destroy]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
