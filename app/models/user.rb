@@ -8,7 +8,7 @@ class User < ApplicationRecord
 
   validates :name,
             presence: true,
-            length: { maximum: 12, message: 'too long lah'}
+            length: { maximum: 50, message: 'too long lah'}
 
   validates :email,
             presence: true,
@@ -19,5 +19,6 @@ class User < ApplicationRecord
   has_secure_password
   validates :password,
             presence: true,
-            length: { minimum: 4 }
+            length: { minimum: 4 },
+            allow_nil: true
 end
